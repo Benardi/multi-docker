@@ -50,7 +50,7 @@ app.get('/values/all', async (req, res) => {
 });
 
 app.get('/values/current', async (req, res) => {
-  redisClient.hgetall('values', (err, val) => {
+  redisClient.hgetall('values', (err, values) => {
     res.send(values);
   });
 });
@@ -67,10 +67,8 @@ app.post('/values', async (req, res) => {
   pgClient.query('INSERT INTO values(number) VALUES($1)', [index]);
 
   res.send({ working: true });
+});
 
 app.listen(5000, err => {
   console.log('Listening');
 });
-
-});
-
