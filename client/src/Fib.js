@@ -14,18 +14,21 @@ class Fib extends Component {
   }
 
   async fetchValues() {
-    const values = await axios.get('/api/values/current');
+    const values = await axios.get('/values/current');
+    //const values = await axios.get('/api/values/current');
     this.setState({ values: values.data });
   }
 
   async fetchIndexes() {
-    const seenIndexes = await axios.get('/api/values/all');
+    const seenIndexes = await axios.get('/values/all');
+    //const seenIndexes = await axios.get('/api/values/all');
     this.setState({ seenIndexes: seenIndexes.data });
   }
  
   handleSubmit = async (event) => {
     event.preventDefault();
-    await axios.post('/api/values', {
+    //await axios.post('/api/values', {
+    await axios.post('/values', {
       index: this.state.index
     });
     this.setState({ index: '' });
@@ -42,9 +45,9 @@ class Fib extends Component {
         <div key={key}>
 	  For  index {key} I calculated {this.state.values[key]}      
         </div>
-      )
-    return entries;
+      );
     }
+    return entries;
   }
 
   render() {
