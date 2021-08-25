@@ -1,0 +1,24 @@
+language: generic
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t benardi/react-test -f ./client/dev.Dockerfile ./client
+
+script:
+  - docker run -e CI=true benardi/react-test npm test
+
+after_success:
+  - docker build -t benardi/multi-client ./client
+  - docker build -t benardi/multi-nginx ./nginx
+  - docker build -t benardi/multi-server ./server
+  - docker build -t benardi/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASS" | docker login -u $DOCKER_ID --password-stdin 
+  # Push built images to docker hub
+  - docker push benardi/multi-client 
+  - docker push benardi/multi-nginx
+  - docker push benardi/multi-server
+  - docker push benardi/multi-worker
