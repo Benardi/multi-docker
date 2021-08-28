@@ -12,7 +12,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Testing the AWS deployment!
         </p>
         <a
           className="App-link"
@@ -20,7 +20,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Testing the AWS deployment!
         </a>
 	<Link to="/">Home</Link>
 	<Link to="/otherpage">Other</Link>
